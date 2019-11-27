@@ -18,9 +18,18 @@ for (let i = 0; i < 10; i++) {
   data.push({
     key: i.toString(),
     product_name: `Edrward ${i}`,
-    viewed_product: 32,
     added_product: 52,
-    checkouted_product: 150
+    checkouted_product: 150,
+    render: viewed_product => (
+      <div>
+          <span>
+              <img src="" />
+          </span>
+          <span>
+              Title product
+          </span>
+      </div>
+    )
   });
 }
 const EditableContext = React.createContext();
@@ -145,6 +154,7 @@ class EditableTable extends React.Component {
   };
 
   save(form, key) {
+      console.log('save')
     form.validateFields((error, row) => {
       if (error) {
         return;
@@ -165,9 +175,10 @@ class EditableTable extends React.Component {
     });
   }
 
-  edit(key) {
-    this.setState({ editingKey: key });
-  }
+    edit(key) {
+        console.log('edit')
+        this.setState({ editingKey: key });
+    }
 
   render() {
     const components = {

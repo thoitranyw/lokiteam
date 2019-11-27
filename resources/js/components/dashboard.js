@@ -24,6 +24,7 @@ const DashboardComponent = () => {
                                 <p className={'percent-text'}>100% of all</p>
                                 <div className={'percent-col'}>
                                     <Icon type="eye" />
+                                    <span></span>
                                 </div>
                                 <p className={'chart-title'}>Viewed Product</p>
                                 <p className={'chart-statistic-number'}>2954</p>
@@ -40,6 +41,7 @@ const DashboardComponent = () => {
                                 <p className={'percent-text'}>100% of all</p>
                                 <div className={'percent-col'}>
                                     <Icon type="shopping-cart" />
+                                    <span></span>
                                 </div>
                                 <p className={'chart-title'}>Added product to cart</p>
                                 <p className={'chart-statistic-number'}>2954</p>
@@ -56,6 +58,7 @@ const DashboardComponent = () => {
                                 <p className={'percent-text'}>100% of all</p>
                                 <div className={'percent-col'}>
                                     <Icon type="credit-card" />
+                                    <span></span>
                                 </div>
                                 <p className={'chart-title'}>Placed an order</p>
                                 <p className={'chart-statistic-number'}>2954</p>
@@ -65,10 +68,6 @@ const DashboardComponent = () => {
                             <div className={'dashboard-statistic__percent'}>
                                 <p className={'dashboard-statistic--title'}>Completion rate</p>
                                 <p className={'dashboard-statistic--number'}>15%</p>
-                            </div>
-                            <div className={'dashboard-statistic__time'}>
-                                <p className={'dashboard-statistic--title'}>Avg complete time</p>
-                                <p className={'dashboard-statistic--number'}>6:20 min</p>
                             </div>
                             <div className={'dashboard-statistic__people'}>
                                 <p className={'dashboard-statistic--title'}>Sample size</p>
