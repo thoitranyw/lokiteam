@@ -21,7 +21,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 //WebHook middleware
-Route::group(['middleware' => [], 'prefix' => 'webhook'], function() {
+Route::group(['middleware' => ['webhook.verify'], 'prefix' => 'webhook'], function() {
 	Route::post('app_uninstalled', 'WebHookController@uninstallApp')->name('webhook.uninstall_app');
     Route::post('shop_update', 'WebHookController@shopUpdate')->name('webhook.shop_update');
 	Route::post('orders_paid', 'WebHookController@ordersUpdated')->name('webhook.orders_paid');
