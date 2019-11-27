@@ -41,9 +41,11 @@ class InjectAssetListener  {
 
         if (!empty($theme)) {
             $themeId = array_values($theme)[0]->id;
-            $lokiFile =  self::LAYOUT_THEM ;
-            $resultLayout = $shopifyApi->getAssetValue($shopDomain, $accessToken, "2019-07",  $lokiFile, $themeId,  "Hoang");
-    
+          
+            $lokiFile =  self::LAYOUT_THEME ;
+            $script = '<script src="' . env('APP_URL') . '/js/frontend.min.js">window.shopId = "'. $shopId .'"</script>';
+            $resultLayout = $shopifyApi->getAssetValue($shopDomain, $accessToken, "2019-07",  $lokiFile, $themeId, $script);
+             
             if ($resultLayout['status']) {
                 $assetValue = $resultLayout['assetValue'];
                 $value = $assetValue->value;
@@ -53,6 +55,7 @@ class InjectAssetListener  {
                     $newValue = "{$assetCore} \n </head>";
                     $pattern = '/<\/head>/';
                     $replace = preg_replace($pattern, $newValue, $value);
+
                     $shopifyApi->updateAssetValue($shopDomain, $accessToken, "2019-07",  $lokiFile, $themeId,   $replace);
                 }
             }
