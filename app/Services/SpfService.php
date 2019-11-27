@@ -296,7 +296,7 @@ class SpfService {
         }
     }
     
-    public function getAssetValue($shopDmain ,$accessToken,$appVs = "2019-07",  $currentTheme = 'themes.json', $fileAsset = '', $url = '')
+    public function getAssetValue($shopDmain ,$accessToken,$appVs = "2019-07",  $fileAsset, $themeId,  $newAssetValue ='')
     {
         try {
             $client = new Client();
