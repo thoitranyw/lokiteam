@@ -22,18 +22,13 @@ const Sidebar = () => {
                     <span className="nav-text">Dashboard</span>
                 </Menu.Item>
 
-                <Menu.Item key="/setting">
+                <Menu.Item key="/product">
                     <Icon type="setting" />
                     <span className="nav-text">Products</span>
                 </Menu.Item>
 
-                <Menu.Item key="/setting">
-                    <Icon type="setting" />
-                    <span className="nav-text">Setting</span>
-                </Menu.Item>
-
                 <Menu.Item key="/logout">
-                    <Icon type="chrome" />
+                    <Icon type="logout" />
                     <span className="nav-text">Logout</span>
                 </Menu.Item>
             </Menu>

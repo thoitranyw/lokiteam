@@ -2,6 +2,9 @@
 <html>
 <head>
     @include('layout.head')
+    <script>
+        window.appUrl = "{{ env('APP_URL') }}"
+    </script>
 </head>
 
 <body>

@@ -24,7 +24,12 @@ const InputShopify = () => {
     }
     return (
         <div>
-            
+            <Search
+              placeholder="example: lokiapps@myshopify.com"
+              enterButton="Login"
+              size="large"
+              onSearch={value => installForm(value)}
+            />
         </div>
     )
 }
