@@ -19,7 +19,12 @@ const Sidebar = () => {
             >
                 <Menu.Item key="/home" onClick={ () => setLocationPathName({ pathname: '/'}) }>
                     <Icon type="home" />
-                    <span className="nav-text">Home</span>
+                    <span className="nav-text">Dashboard</span>
+                </Menu.Item>
+
+                <Menu.Item key="/setting">
+                    <Icon type="setting" />
+                    <span className="nav-text">Products</span>
                 </Menu.Item>
 
                 <Menu.Item key="/setting">
