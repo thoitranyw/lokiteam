@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ShopModel;
+use App\Models\ProductModel;
 use App\Services\SpfService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
+use App\ShopifyApi\ProductsApi;
 
 class AppsController extends Controller
 {
@@ -178,31 +181,41 @@ class AppsController extends Controller
         return redirect('/');
     }
 
-    public function SyncProduct($shopId) {
+    public function SyncProduct(Request $request, $shopId) {
+        // $shopId = session('shopId');
+        // $shopId = 7112032315;
         $shop = ShopModel::find($shopId);
         $productApi = new ProductsApi($shop->myshopify_domain, $shop->access_token);
-        $productRepo = new ProductRepository($shopId);
 
-        $count = $productApi->count($this->_filters, $this->_status);
+
+        $count = $productApi->count([], 'any');
         if ($count['status']) {
             $count = $count['data']->count;
 
-            $page = ceil($count / $this->_limit);
+            $page = ceil($count / 250);
             for($i = 1; $i <= $page; $i++)
             {
-                $products = $productApi->all($this->_field, $this->_filters, $i, $this->_limit, $this->_status);
+                $products = $productApi->all([], [], $i, 250, 'any');
                 //Convert object to array
                 $products = $products['data']->products;
                 $products = json_decode(json_encode($products), true);
 
-                foreach ($products as $product)
+                foreach ($products as $productData)
                 {
-                    $product['image'] = isset($product['image']['src']) ? $product['image']['src'] : config('common.default_image');
-                    $product['images'] = isset($product['images']) ? $product['images'] : [];
-                    $product['tag'] = $product['tags'];
-                    $productRepo->save($product);
+                    $data = $productData;
+                    $productModel = new ProductModel();
+                    $filterData = Arr::only($data, $productModel->getFillable());
+                    $filterData['shop_id'] = $shopId;
+                    $filterData['image'] = isset($data['image']['src']) ? $data['image']['src'] : null;
+                    
+                    if($product = $productModel->find($data['id'])) {
+                        $product->update($filterData);
+                    } else {
+                        $productModel->firstOrCreate($filterData);
+                    }
                 }
             }
         }
+        return true;
     }
 }
