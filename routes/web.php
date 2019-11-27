@@ -38,10 +38,20 @@ Route::group(['middleware' => [], 'prefix' => 'webhook'], function() {
     // Route::get('orders_partially_fulfilled', 'WebHookController@ordersPartiallyFulfilled')->name('webhook.orders_partially_fulfilled');
 });
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+//Route  Slider
+Route::group(['middleware' => [],'prefix'=>'slider'], function() {
+	Route::get('/', 'SliderController@index')->name('slider');
 });
 
-Route::get('/slider', function () {
-    return view('slider.index');
+
+//Route  ThemeSetting
+Route::group(['middleware' => [],'prefix'=>'setting'], function() {
+	Route::get('/', 'ThemeSettingController@index')->name('setting');
 });
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
