@@ -22,6 +22,13 @@ class SliderController extends Controller {
         ], 200);
     }
 
+    public function getSliderTheme(Request $request, $shopId) {
+        $sliders = SliderModel::where('shop_id', $shopId)->with(['product'])->get();
+        return response()->json([
+            'result' => $sliders
+        ], 200);
+    }
+
     public function setProductPosition(Request $request) {
         $shopId = session('shopId');
         
