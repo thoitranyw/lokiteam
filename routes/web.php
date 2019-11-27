@@ -31,8 +31,13 @@ Route::group(['middleware' => ['webhook.verify'], 'prefix' => 'webhook'], functi
 });
 
 Route::group(['middleware' => ['shopify.check'], 'prefix' => 'admin-api'], function () {
-	Route::group(['middleware' => ['shopify.check'], 'prefix' => 'products'], function () {
+	Route::group(['middleware' => [], 'prefix' => 'products'], function () {
 		Route::get('/','ProductController@getProduct')->name('admin-api.products.getProduct');
+	});
+	Route::group(['middleware' => [], 'prefix' => 'sliders'], function () {
+		Route::get('/','SliderController@getSliderAdmin')->name('admin-api.sliders.getSliderAdmin');
+		Route::post('/set_position','SliderController@setProductPosition')->name('admin-api.sliders.setProductPosition');
+		Route::post('/unset_position','SliderController@unsetPosition')->name('admin-api.sliders.unsetPosition');
 	});
 });
 
