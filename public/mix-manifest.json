@@ -1,10 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/slider.min.css": "/css/slider.min.css",
     "/css/install_app.min.css": "/css/install_app.min.css",
-    "/css/app.min.css": "/css/app.min.css",
+    "/css/app.css": "/css/app.css",
     "/js/dashboard.min.js": "/js/dashboard.min.js",
-    "/js/install_app.min.js": "/js/install_app.min.js",
-    "/js/products.min.js": "/js/products.min.js",
-    "/js/setting.min.js": "/js/setting.min.js"
+    "/js/install_app.min.js": "/js/install_app.min.js"
 }
