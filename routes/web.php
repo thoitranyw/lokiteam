@@ -11,6 +11,14 @@
 |
 */
 
+Route::group(['prefix' => 'auth'], function () {
+	Route::get('install', 'AppsController@installApp')->name('apps.installApp');
+    Route::post('installHandle', 'AppsController@installAppHandle')->name('apps.installHandle');
+    Route::get('auth', 'AppsController@auth')->name('apps.auth');
+    Route::get('404', 'AppsController@errors')->name('errors.404');
+    Route::get('logout','AppsController@logout')->name('apps.logout');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
