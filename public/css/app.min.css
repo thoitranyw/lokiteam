@@ -262,3 +262,22 @@
   white-space: nowrap;
 }
 
+.ant-table-row-cell-product {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.ant-table-row-cell-product-img {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.ant-table-row-cell-product-img img {
+  max-width: 100%;
+}
+
