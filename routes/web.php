@@ -54,6 +54,10 @@ Route::group(['middleware' => [],'prefix'=>'setting'], function() {
 	Route::get('/', 'ThemeSettingController@index')->name('setting');
 });
 
+//Route  Products
+Route::group(['middleware' => [],'prefix'=>'products'], function() {
+	Route::get('/', 'ProductsController@index')->name('products');
+});
 
 
 // Route::get('/', function () {
