@@ -41,7 +41,9 @@ class VerifyCsrfToken extends Middleware
         'maintenance',
         'admin-api/sliders/set_position',
         'admin-api/sliders/unset_position',
-        'admin-api/products/funnel'
+        'admin-api/products/funnel',
+        'theme/*',
+        'SyncProduct'
 //        'webhook/orders_fulfilled',
 //        'webhook/orders_partially_fulfilled'
     ];

@@ -58,17 +58,27 @@
 }
 
 .dashboard-wrap .dashboard-chart .percent-col {
-  width: 45px;
+  width: 50px;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
-  background: #1890ff;
+  background: #e8e8e8;
   min-height: 50px;
-  height: 150px;
+  height: 170px;
   position: relative;
   border-radius: 3px;
   margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.dashboard-wrap .dashboard-chart .percent-col span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #1890ff;
+  width: 100%;
 }
 
 .dashboard-wrap .dashboard-chart .percent-col i {
@@ -246,5 +256,28 @@
 
 .ant-table-pagination {
   display: none;
+}
+
+.ant-table-column-title {
+  white-space: nowrap;
+}
+
+.ant-table-row-cell-product {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.ant-table-row-cell-product-img {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.ant-table-row-cell-product-img img {
+  max-width: 100%;
 }
 

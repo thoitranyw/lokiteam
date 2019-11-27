@@ -23,11 +23,11 @@ class AddCoreLokiListener
     {
         $shopRepo = new ShopRepository() ; 
         $shopId = $event->shopId;
-        $info = $shopRepo->detail($shopId); 
+        $info = $shopRepo->detail($shopId);
         $accessToken  = $info->access_token ; 
         $shopDomain  = $info->domain;
         $shopifyApi = new ShopsApi(); 
-        $info = $shopifyApi->getRequestApi($shopDomain, $accessToken); 
+        $info = $shopifyApi->getRequestApi($shopDomain, $accessToken);
         $listTheme = $info['data']->themes;
         $theme = array_filter($listTheme, function($item) {
             return $item->role === 'main';

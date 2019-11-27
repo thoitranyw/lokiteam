@@ -17,10 +17,10 @@ axios.get(window.appUrl + '/admin-api/products').then(res => {
 for (let i = 0; i < 10; i++) {
   data.push({
     key: i.toString(),
-    product_name: `Edrward ${i}`,
-    viewed_product: 32,
+    product_name: [{ name: 'Product title...', image_url: 'https://ae01.alicdn.com/kf/H091ad26195d2438dba0adbd1ea8d955cm/EAM-Women-Black-Sequins-Split-Big-Size-Dress-New-Round-Neck-Long-Sleeve-Loose-Fit.jpg'}],
     added_product: 52,
-    checkouted_product: 150
+    checkouted_product: 150,
+    viewed_product: 38
   });
 }
 const EditableContext = React.createContext();
@@ -80,6 +80,25 @@ class EditableTable extends React.Component {
         dataIndex: 'product_name',
         width: '35%',
         editable: false,
+        render: product_name => (
+            <div>
+            {product_name.map(product => {
+                    return (
+                        <div className={'ant-table-row-cell-product'}>
+                            <span className={'ant-table-row-cell-product-img'}>
+                                <img src={product.image_url} />
+                            </span>
+                            <span className={'ant-table-row-cell-product-name'}>
+                                {product.name}
+                            </span>
+                            
+                        </div>
+                    );
+                })
+            }
+            </div>
+            
+        )
       },
       {
         title: 'Viewed product',
@@ -145,29 +164,38 @@ class EditableTable extends React.Component {
   };
 
   save(form, key) {
-    form.validateFields((error, row) => {
-      if (error) {
-        return;
-      }
-      const newData = [...this.state.data];
-      const index = newData.findIndex(item => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
+      console.log('save')
+        form.validateFields((error, row) => {
+          if (error) {
+            return;
+          }
+          const newData = [...this.state.data];
+          const index = newData.findIndex(item => key === item.key);
+          if (index > -1) {
+            const item = newData[index];
+            newData.splice(index, 1, {
+              ...item,
+              ...row,
+            });
+            this.setState({ data: newData, editingKey: '' });
+          } else {
+            newData.push(row);
+            this.setState({ data: newData, editingKey: '' });
+            axios.post(window.appUrl + '/sliders/set_position')
+            .then(res => {
+                console.log('res', res)
+            })
+            .catch(error => {
+
+            })
+          }
         });
-        this.setState({ data: newData, editingKey: '' });
-      } else {
-        newData.push(row);
-        this.setState({ data: newData, editingKey: '' });
-      }
-    });
   }
 
-  edit(key) {
-    this.setState({ editingKey: key });
-  }
+    edit(key) {
+        console.log('edit')
+        this.setState({ editingKey: key });
+    }
 
   render() {
     const components = {
@@ -211,7 +239,16 @@ class EditableTable extends React.Component {
 const EditableFormTable = Form.create()(EditableTable);
 
 const DashboardComponent = () => {
+    // state = {
+    //     current: 3,
+    // };
 
+    // onChange = page => {
+    //     console.log(page);
+    //     this.setState({
+    //       current: page,
+    //     });
+    // };
     return ( 
         <Layout>
             <Header>Header</Header>
@@ -219,6 +256,7 @@ const DashboardComponent = () => {
                 <Sidebar />
                 <Content style={{ padding: '24px', minHeight: 280 }}>
                     <EditableFormTable />
+                    {/* <Pagination current={this.state.current} onChange={this.onChange} total={50} /> */}
                 </Content>
             </Layout>
         </Layout>

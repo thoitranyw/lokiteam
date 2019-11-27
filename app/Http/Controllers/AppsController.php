@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ShopModel;
+use App\Models\ProductModel;
 use App\Services\SpfService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
+use App\ShopifyApi\ProductsApi;
 use App\Events\AddCoreLokiEvent;
 
 
@@ -168,21 +171,62 @@ class AppsController extends Controller
             'shopOwner' => $shopInfoApi['shop_owner'], 'shopEmail' => $shopInfoApi['email'],
             'created_at' => strtotime($shopInfoApi['created_at']), 'goodToken' => 1]);
 
-            // 
+        }
+        if( ! $shopInfo || (isset($shopInfo->status) && ! $shopInfo->status))
+        {
+            if($shopRepo->createOrUpdate($shopInfoApi['id'], $shopInfoApi))
+            {   
+                $shopId = $shopInfoApi['id'];
+                if(!empty($shopId)) {
+                    event( new AddCoreLokiEvent($shopId)) ;
+                }
+                return redirect('/');
+            }
+        } else {
+            $shopRepo->createOrUpdate($shopInfoApi['id'], ['access_token' => $accessToken]);
             $shopId = $shopInfoApi['id'];
             if(!empty($shopId)) {
                 event( new AddCoreLokiEvent($shopId)) ;
             }
         }
-        if( ! $shopInfo || (isset($shopInfo->status) && ! $shopInfo->status))
-        {
-            if($shopRepo->createOrUpdate($shopInfoApi['id'], $shopInfoApi))
-            {
-                return redirect('/');
-            }
-        } else {
-            $shopRepo->createOrUpdate($shopInfoApi['id'], ['access_token' => $accessToken]);
-        }
         return redirect('/');
+    }
+
+    public function SyncProduct(Request $request, $shopId) {
+        // $shopId = session('shopId');
+        // $shopId = 7112032315;
+        $shop = ShopModel::find($shopId);
+        $productApi = new ProductsApi($shop->myshopify_domain, $shop->access_token);
+
+
+        $count = $productApi->count([], 'any');
+        if ($count['status']) {
+            $count = $count['data']->count;
+
+            $page = ceil($count / 250);
+            for($i = 1; $i <= $page; $i++)
+            {
+                $products = $productApi->all([], [], $i, 250, 'any');
+                //Convert object to array
+                $products = $products['data']->products;
+                $products = json_decode(json_encode($products), true);
+
+                foreach ($products as $productData)
+                {
+                    $data = $productData;
+                    $productModel = new ProductModel();
+                    $filterData = Arr::only($data, $productModel->getFillable());
+                    $filterData['shop_id'] = $shopId;
+                    $filterData['image'] = isset($data['image']['src']) ? $data['image']['src'] : null;
+                    
+                    if($product = $productModel->find($data['id'])) {
+                        $product->update($filterData);
+                    } else {
+                        $productModel->firstOrCreate($filterData);
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
