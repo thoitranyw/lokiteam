@@ -1,0 +1,35 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - ./storage:/storage
+      - ./docker-config/php-fpm/conf.d/ah.conf:/usr/local/etc/php-fpm.d/ah.conf
+      - ./docker-config/php-fpm/ah.ini:/usr/local/etc/php/conf.d/ah.ini
+    depends_on:
+      - "db"
+  db:
+    image: mysql:5.6
+    volumes:
+      - ./volumes:/var/lib/mysql
+    ports:
+      - "3452:5432"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: loki
+      MYSQL_USER: loki
+      MYSQL_PASSWORD: 123456
+  webserver:
+    image: nginx
+    ports:
+      - "8888:80"
+    volumes:
+      - .:/app
+      - ./docker-config/nginx/conf.d/:/etc/nginx/conf.d/
+    links:
+      - app
