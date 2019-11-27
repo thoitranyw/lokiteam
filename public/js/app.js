@@ -51202,8 +51202,8 @@ if (document.getElementById('example')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/admin/projects/company/bk/projects/lokiteam/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/admin/projects/company/bk/projects/lokiteam/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Resources\src\alicashback\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Resources\src\alicashback\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
