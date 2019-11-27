@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repository\ShopRepository;
 use App\Models\ProductModel;
 use App\Models\ShopModel;
+use App\Models\OrderModel;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
 
@@ -70,10 +71,43 @@ class WebhookController extends Controller
     public function ordersUpdated(Request $request)
     {
         $data = $request->all();
-        $lineItems = $data['line_items'];
-        foreach($lineItems as $lineItem) {
-            ProductModel::where('id', $lineItem['product_id'])->increment('checkout');
+        $order = OrderModel::find($data['id']);
+        $shop_name = $request->server('HTTP_X_SHOPIFY_SHOP_DOMAIN');
+        $objectShop = ShopModel::where('myshopify_domain', $shop_name)->first();
+        $data['order_name'] = $data['name'];
+        $orderModel = new OrderModel();
+        $filterData = Arr::only($data, $orderModel->getFillable());
+        $filterData['shop_id'] = $objectShop->id;
+        if($order = $orderModel->find($data['id'])) {
+            if(json_decode($order->product_ids)) {
+                $product_ids = json_decode($order->product_ids);
+            } else {
+                $product_ids = [];
+            }
+            $productIds = $this->incrementCheckoutOrder($data['line_items'], $product_ids);
+            $filterData['product_ids'] = json_encode($productIds);
+            if($order->update($filterData)) {
+                return response()->json(['status' => true]);
+            }
+            return response()->json(['status' => false]);
         }
-        return response()->json(['status' => true]);
+        $productIds = $this->incrementCheckoutOrder($data['line_items'], []);
+        $filterData['product_ids'] = json_encode($productIds);
+        if($orderModel->firstOrCreate($filterData)) {
+            return response()->json(['status' => true]);
+        }
+        return response()->json(['status' => false]);
+        
+    }
+
+    public function incrementCheckoutOrder($newLineItems, $oldLineItems) {
+        $lineItems = $newLineItems;
+        foreach($lineItems as $lineItem) {
+            if(!in_array($lineItem['product_id'], $oldLineItems)) {
+                ProductModel::where('id', $lineItem['product_id'])->increment('checkout');
+                $oldLineItems[] = $lineItem['product_id'];
+            }
+        }
+        return $oldLineItems;
     }
 }
