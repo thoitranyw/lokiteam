@@ -4,11 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/app
-      - ./storage:/storage
-      - ./docker-config/php-fpm/conf.d/ah.conf:/usr/local/etc/php-fpm.d/ah.conf
-      - ./docker-config/php-fpm/ah.ini:/usr/local/etc/php/conf.d/ah.ini
     depends_on:
       - "db"
     # ports:

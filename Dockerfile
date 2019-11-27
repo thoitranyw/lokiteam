@@ -13,4 +13,5 @@ RUN pecl install -o -f redis \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 COPY . .
+RUN chmod -R 777 /app/storage
 RUN composer install
