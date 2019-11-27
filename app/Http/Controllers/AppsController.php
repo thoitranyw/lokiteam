@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Arr;
 use App\ShopifyApi\ProductsApi;
+use App\Events\AddCoreLokiEvent;
+
 
 class AppsController extends Controller
 {
@@ -168,6 +170,12 @@ class AppsController extends Controller
             session(['accessToken' => $accessToken, 'shopDomain'  => $shopDomain, 'shopId' => $shopInfoApi['id'],
             'shopOwner' => $shopInfoApi['shop_owner'], 'shopEmail' => $shopInfoApi['email'],
             'created_at' => strtotime($shopInfoApi['created_at']), 'goodToken' => 1]);
+
+            // 
+            $shopId = $shopInfoApi['id'];
+            if(!empty($shopId)) {
+                event( new AddCoreLokiEvent($shopId)) ;
+            }
         }
         if( ! $shopInfo || (isset($shopInfo->status) && ! $shopInfo->status))
         {
