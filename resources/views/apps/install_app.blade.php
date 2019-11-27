@@ -3,7 +3,7 @@
 </script>
 <div id="install-app-wrap">
     <div class="loki-install">
-        <div class="loki-install-box">
+        <div class="loki-install-box bg-blue">
             <div class="loki-install-label">LOKI APP</div>
             <video></video>
         </div>
