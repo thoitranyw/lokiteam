@@ -69,6 +69,7 @@
   position: relative;
   border-radius: 3px;
   margin-bottom: 15px;
+  overflow: hidden;
 }
 
 .dashboard-wrap .dashboard-chart .percent-col span {
@@ -77,6 +78,7 @@
   bottom: 0;
   left: 0;
   background: #1890ff;
+  width: 100%;
 }
 
 .dashboard-wrap .dashboard-chart .percent-col i {

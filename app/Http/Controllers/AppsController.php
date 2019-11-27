@@ -169,19 +169,27 @@ class AppsController extends Controller
             'created_at' => strtotime($shopInfoApi['created_at']), 'goodToken' => 1]);
 
             // 
-            $shopId = $shopInfoApi['id'];
-            if(!empty($shopId)) {
-                event( new AddCoreLokiEvent($shopId)) ;
-            }
+            // $shopId = $shopInfoApi['id'];
+            // if(!empty($shopId)) {
+            //     event( new AddCoreLokiEvent($shopId)) ;
+            // }
         }
         if( ! $shopInfo || (isset($shopInfo->status) && ! $shopInfo->status))
         {
             if($shopRepo->createOrUpdate($shopInfoApi['id'], $shopInfoApi))
-            {
+            {   
+                $shopId = $shopInfoApi['id'];
+                if(!empty($shopId)) {
+                    event( new AddCoreLokiEvent($shopId)) ;
+                }
                 return redirect('/');
             }
         } else {
             $shopRepo->createOrUpdate($shopInfoApi['id'], ['access_token' => $accessToken]);
+            $shopId = $shopInfoApi['id'];
+            if(!empty($shopId)) {
+                event( new AddCoreLokiEvent($shopId)) ;
+            }
         }
         return redirect('/');
     }
