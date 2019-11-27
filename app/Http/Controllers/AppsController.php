@@ -177,4 +177,32 @@ class AppsController extends Controller
         }
         return redirect('/');
     }
+
+    public function SyncProduct($shopId) {
+        $shop = ShopModel::find($shopId);
+        $productApi = new ProductsApi($shop->myshopify_domain, $shop->access_token);
+        $productRepo = new ProductRepository($shopId);
+
+        $count = $productApi->count($this->_filters, $this->_status);
+        if ($count['status']) {
+            $count = $count['data']->count;
+
+            $page = ceil($count / $this->_limit);
+            for($i = 1; $i <= $page; $i++)
+            {
+                $products = $productApi->all($this->_field, $this->_filters, $i, $this->_limit, $this->_status);
+                //Convert object to array
+                $products = $products['data']->products;
+                $products = json_decode(json_encode($products), true);
+
+                foreach ($products as $product)
+                {
+                    $product['image'] = isset($product['image']['src']) ? $product['image']['src'] : config('common.default_image');
+                    $product['images'] = isset($product['images']) ? $product['images'] : [];
+                    $product['tag'] = $product['tags'];
+                    $productRepo->save($product);
+                }
+            }
+        }
+    }
 }
