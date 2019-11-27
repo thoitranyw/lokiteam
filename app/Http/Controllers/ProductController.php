@@ -27,8 +27,6 @@ class ProductController extends Controller
             'result' => $products
         ], 200);
     }
-<<<<<<< HEAD
-=======
 
     public function funnel(Request $request) {
         $shopId = session('shopId');
@@ -42,5 +40,4 @@ class ProductController extends Controller
             'result' => $funnel
         ], 200);
     }
->>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
 }
