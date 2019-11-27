@@ -1,18 +1,34 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 import { Form, Input, Button, Radio } from 'antd';
+import axios from 'axios'
 import 'antd/dist/antd.css';
-
 
 const { Search } = Input;
 const InputShopify = () => {
+    function installForm(shop) {
+        console.log(shop)
+        axios.post(window.appUrl + '/auth/installHandle', { shop: shop})
+        .then(res => {
+            console.log('res', res)
+            const { data = null } = res
+            console.log('data', data)
+            if(data && data.url) {
+                console.log(data.url)
+                window.location.href = data.url 
+            }
+        } )
+        .catch(function(error) {
+
+        })
+    }
     return (
         <div>
             <Search
-              placeholder="input search text"
-              enterButton="Search"
+              placeholder="example: lokiapps@myshopify.com"
+              enterButton="Login"
               size="large"
-              onSearch={value => console.log(value)}
+              onSearch={value => installForm(value)}
             />
         </div>
     )
