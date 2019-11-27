@@ -14,7 +14,7 @@ class CreateSliderTable extends Migration
     public function up()
     {
         Schema::create('slider', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->increments('id');
             $table->bigInteger('product_id');
             $table->bigInteger('shop_id');
             $table->timestamps();
