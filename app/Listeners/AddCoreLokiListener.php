@@ -35,7 +35,7 @@ class AddCoreLokiListener
         if (!empty($theme)) {
             $themeId = array_values($theme)[0]->id;
             $lokiFile =  'snippets/loki_core.liquid' ;
-            $script = '<script src="' . env('APP_URL') . '/js/frontend.min.js">window.loki_shopid = "'. $shopId .'"</script>';
+            $script = '<input id="loki-shopid-app" type="hidden" value="'. $shopId .'" /><script src="' . env('APP_URL') . '/js/frontend.min.js"></script>';
             $resultLayout = $shopifyApi->updateAssetValue($shopDomain, $accessToken, "2019-07",  $lokiFile, $themeId,  $script);
         }
     }
