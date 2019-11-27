@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Slider extends Model
+class SliderModel extends Model
 {
     /**
      * @var string
@@ -28,7 +28,7 @@ class Slider extends Model
 
    
     protected $fillable = [
-        'id', 'product_id', 'shop_id' 
+        'id', 'product_id', 'shop_id', 'position'
     ];
 
     protected $dates = [
@@ -36,5 +36,8 @@ class Slider extends Model
         'updated_at',
     ];
 
-   
+    public function product()
+    {
+        return $this->hasOne('App\Models\ProductModel', 'id', 'product_id');
+    }
 }

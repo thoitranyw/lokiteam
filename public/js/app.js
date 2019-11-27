@@ -51224,10 +51224,17 @@ if (document.getElementById('example')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\lokiteam\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! D:\lokiteam\resources\sass\scss\slider.scss */"./resources/sass/scss/slider.scss");
 __webpack_require__(/*! D:\lokiteam\resources\sass\scss\install_app.scss */"./resources/sass/scss/install_app.scss");
 module.exports = __webpack_require__(/*! D:\lokiteam\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! /Users/admin/projects/company/bk/projects/lokiteam/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/admin/projects/company/bk/projects/lokiteam/resources/sass/scss/slider.scss */"./resources/sass/scss/slider.scss");
+__webpack_require__(/*! /Users/admin/projects/company/bk/projects/lokiteam/resources/sass/scss/install_app.scss */"./resources/sass/scss/install_app.scss");
+module.exports = __webpack_require__(/*! /Users/admin/projects/company/bk/projects/lokiteam/resources/sass/app.scss */"./resources/sass/app.scss");
+>>>>>>> db9eb21ae2a03597e784cf4282c734e5452dd321
 
 
 /***/ })
