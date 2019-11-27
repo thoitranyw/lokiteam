@@ -1,29 +1,16 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
-import { Layout, Form, Input, Button, Radio, Table, InputNumber, Popconfirm } from 'antd';
+import { Layout, Form, Input, Button, Radio, Table, InputNumber, Popconfirm, Pagination } from 'antd';
 import Sidebar from './sidebar'
 import axios from 'axios'
 import 'antd/dist/antd.css';
+import { type } from 'os';
 
 const { Header, Content } = Layout;
 
-const data = [];
-axios.get(window.appUrl + '/admin-api/products').then(res => {
-    console.log('res', res)
-})
-.catch((error) => {
 
-})
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: i.toString(),
-    product_name: [{ name: 'Product title...', image_url: 'https://ae01.alicdn.com/kf/H091ad26195d2438dba0adbd1ea8d955cm/EAM-Women-Black-Sequins-Split-Big-Size-Dress-New-Round-Neck-Long-Sleeve-Loose-Fit.jpg'}],
-    added_product: 52,
-    checkouted_product: 150,
-    viewed_product: 38
-  });
-}
 const EditableContext = React.createContext();
+const baseUrlImage = 'https://ae01.alicdn.com/kf/H091ad26195d2438dba0adbd1ea8d955cm/EAM-Women-Black-Sequins-Split-Big-Size-Dress-New-Round-Neck-Long-Sleeve-Loose-Fit.jpg';
 
 class EditableCell extends React.Component {
   getInput = () => {
@@ -73,7 +60,8 @@ class EditableCell extends React.Component {
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data, editingKey: '' };
+    this.onChangePage = this.onChangePage.bind(this)
+    this.state = { data: [], editingKey: '', page: 1, total: 1, sort_by: ''};
     this.columns = [
       {
         title: 'Product name',
@@ -105,18 +93,24 @@ class EditableTable extends React.Component {
         dataIndex: 'viewed_product',
         width: '12%',
         editable: false,
+        sorter: true,
+        sortDirections: ['descend'],
       },
       {
         title: 'Added product',
         dataIndex: 'added_product',
         width: '15%',
         editable: false,
+        sorter: true,
+        sortDirections: ['descend'],
       },
       {
         title: 'Checkouted product',
         dataIndex: 'checkouted_product',
         width: '15%',
         editable: false,
+        sorter: true,
+        sortDirections: ['descend'],
       },
       {
         title: 'Position',
@@ -157,6 +151,37 @@ class EditableTable extends React.Component {
     ];
   }
 
+  componentWillMount() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sortBy = urlParams.get('sortby');
+    const page = urlParams.get('page');
+    this.setState({page: Number(page), sort_by: sortBy})
+    axios.get(window.appUrl + '/admin-api/products', {
+      params: {
+        sortby: sortBy,
+        page: page
+      }
+    }).then(res => {
+        let baseData = res.data.result.data
+        let data = [];
+        for (let i = 0; i < baseData.length; i++) {
+          data.push({
+            key: baseData[i].id,
+            product_name: [{ name: baseData[i].title, image_url: baseData[i].image ? baseData[i].image : baseUrlImage}],
+            added_product: baseData[i].add_to_cart,
+            checkouted_product: baseData[i].checkout,
+            viewed_product: baseData[i].view,
+            position_product: baseData[i].slider ? baseData[i].slider.position : null
+          });
+        }
+        this.setState({data: data, total: res.data.result.last_page})
+    })
+    .catch((error) => {
+
+    })
+      
+  }
+
   isEditing = record => record.key === this.state.editingKey;
 
   cancel = () => {
@@ -164,7 +189,6 @@ class EditableTable extends React.Component {
   };
 
   save(form, key) {
-      console.log('save')
         form.validateFields((error, row) => {
           if (error) {
             return;
@@ -178,10 +202,19 @@ class EditableTable extends React.Component {
               ...row,
             });
             this.setState({ data: newData, editingKey: '' });
+            axios.post(window.appUrl + '/admin-api/sliders/set_position', {
+              product_id: key,
+              position: row.position_product
+            })
+            .then(res => {
+            })
+            .catch(error => {
+
+            })
           } else {
             newData.push(row);
             this.setState({ data: newData, editingKey: '' });
-            axios.post(window.appUrl + '/sliders/set_position')
+            axios.post(window.appUrl + '/admin-api/sliders/set_position')
             .then(res => {
                 console.log('res', res)
             })
@@ -193,9 +226,52 @@ class EditableTable extends React.Component {
   }
 
     edit(key) {
-        console.log('edit')
         this.setState({ editingKey: key });
     }
+
+    onChangeTable = async function (pagination, filters, sorter, extra) {
+      let sortKey = {
+        viewed_product: 'view',
+        checkouted_product: 'checkout',
+        added_product: 'add_to_cart'
+      }
+      let sortBy = ''
+      if(typeof sortKey[sorter.field] != "undefined") {
+        sortBy = sortKey[sorter.field]
+      }
+      window.location = window.appUrl + '/products?sortby=' + sortBy
+    //   let sortBy = ''
+    //   if(typeof sortKey[sorter.field] != "undefined") {
+    //     sortBy = sortKey[sorter.field]
+    //   }
+    //   axios.get(window.appUrl + '/admin-api/products', {
+    //     params: {
+    //       sortby: sortBy
+    //     }
+    //   }).then(res => {
+    //     let baseData = res.data.result.data
+    //     let data = [];
+       
+    //     for (let i = 0; i < baseData.length; i++) {
+    //       data.push({
+    //         key: baseData[i].id,
+    //         product_name: [{ name: baseData[i].title, image_url: baseData[i].image ? baseData[i].image : baseUrlImage}],
+    //         added_product: baseData[i].add_to_cart,
+    //         checkouted_product: baseData[i].checkout,
+    //         viewed_product: baseData[i].view,
+    //         position_product: baseData[i].slider ? baseData[i].slider.position : null
+    //       });
+    //     }
+    //     this.setState({data: data})
+    // })
+    // .catch((error) => {
+
+    // })
+  }
+
+  onChangePage(page) {
+    window.location = window.appUrl + '/products?sortby=' + this.state.sort_by + '&page=' + page
+  }
 
   render() {
     const components = {
@@ -221,18 +297,22 @@ class EditableTable extends React.Component {
     });
 
     return (
-      <EditableContext.Provider value={this.props.form}>
-        <Table
-          components={components}
-          bordered
-          dataSource={this.state.data}
-          columns={columns}
-          rowClassName="editable-row"
-          pagination={{
-            onChange: this.cancel,
-          }}
-        />
-      </EditableContext.Provider>
+      <div>
+        <EditableContext.Provider value={this.props.form}>
+          <Table
+            components={components}
+            bordered
+            dataSource={this.state.data}
+            columns={columns}
+            rowClassName="editable-row"
+            onChange={this.onChangeTable}
+            pagination={{
+              onChange: this.cancel,
+            }}
+          />
+        </EditableContext.Provider>
+        <Pagination current={this.state.page} onChange={this.onChangePage} total={50} />
+      </div>
     );
   }
 }
