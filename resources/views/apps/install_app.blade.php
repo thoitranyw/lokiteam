@@ -1,22 +1,27 @@
 
+<script>
+    window.appUrl = "{{ env('APP_URL') }}"
+</script>
 <div id="install-app-wrap">
-    <div class="content-right text-center">
-        <div class="form-sign-in">
-            <div class="title-form">
+    <div class="loki-install">
+        <div class="loki-install-box">
+            <div class="loki-install-label">LOKI APP</div>
+            <video></video>
+        </div>
+        <div class="loki-install-box">
+            <div class="loki-install-welcom">
                 <h2>WELCOME</h2>
                 <p>Please enter your Shopify URL</p>
-            </div>
-
-            <form id="installation-shop-form" method="post" action="{{ route('apps.installHandle') }}" name="installShopify">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div id="install__app">
-                
+                    
                 </div>
-                
-            </form>
+            </div>
         </div>
-    </div>
+        
+    </div>  
 </div>
 
-<script type="text/javascript" src="{{ URL::asset(mix('js/install_app.min.js')) }}"></script>
+<link href="{{ URL::asset(mix('css/install_app.min.css')) }}" rel="stylesheet">
 
+<script type="text/javascript" src="{{ URL::asset(mix('js/install_app.min.js')) }}"></script>

@@ -1,0 +1,38 @@
+#install-app-wrap {
+  height: 100%;
+}
+
+.loki-install {
+  display: -webkit-box;
+  display: flex;
+  height: 100%;
+}
+
+.loki-install .loki-install-box {
+  position: relative;
+  width: 50%;
+}
+
+.loki-install-welcom {
+  padding: 0 10%;
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: calc(100% - 100px);
+}
+
+.loki-install-label {
+  background: #F00;
+  position: absolute;
+  top: 34px;
+  left: -120px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  width: 340px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+
