@@ -19,5 +19,5 @@ mix.react('resources/js/app.js', 'public/js')
    .react('resources/js/frontend.js', 'public/js/frontend.min.js').version()
    .sass('resources/sass/scss/slider.scss', 'public/css/slider.min.css')
    .sass('resources/sass/scss/install_app.scss', 'public/css/install_app.min.css')
-   .sass('resources/sass/app.scss', 'public/css/app.min.css');
-   .sass('resources/sass/frontend.scss', 'public/css/frontend.min.css');
+   .sass('resources/sass/app.scss', 'public/css/app.min.css')
+   .sass('resources/sass/scss/frontend.scss', 'public/css/frontend.min.css');
