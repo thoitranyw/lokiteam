@@ -1,8 +1,9 @@
 {
-    "/js/app.js": "/js/app.js?id=e5f58c95c440a204c844",
-    "/css/slider.min.css": "/css/slider.min.css?id=0f9fe8745394890bc653",
+    "/js/app.js": "/js/app.js?id=bc37c20af063019f534d",
+    "/css/slider.min.css": "/css/slider.min.css?id=cbe649ee9ca7fe62222c",
     "/css/install_app.min.css": "/css/install_app.min.css?id=ea1d78c125f2e082c1e5",
-    "/css/app.min.css": "/css/app.min.css?id=cd7df053d62510cebe89",
-    "/js/dashboard.min.js": "/js/dashboard.min.js?id=0310bdf582175a3189bb",
-    "/js/install_app.min.js": "/js/install_app.min.js?id=efb24a9f23de0aca8397"
+    "/css/app.min.css": "/css/app.min.css?id=dfb6637a9323e4b52cae",
+    "/js/dashboard.min.js": "/js/dashboard.min.js?id=e5a27a8be675c2651cf4",
+    "/js/install_app.min.js": "/js/install_app.min.js?id=2e5d42dd381ffd41a278",
+    "/js/setting.min.js": "/js/setting.min.js?id=ba0e37a296608a06847b"
 }

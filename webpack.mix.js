@@ -15,6 +15,5 @@ mix.react('resources/js/app.js', 'public/js')
    .react('resources/js/components/install_app.js', 'public/js/install_app.min.js')
    .react('resources/js/components/dashboard.js', 'public/js/dashboard.min.js').version()
    .react('resources/js/components/setting.js', 'public/js/setting.min.js').version()
-   .sass('resources/sass/scss/slider.scss', 'public/css/slider.min.css')
    .sass('resources/sass/scss/install_app.scss', 'public/css/install_app.min.css')
    .sass('resources/sass/app.scss', 'public/css/app.min.css');
