@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductModel;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -26,4 +27,20 @@ class ProductController extends Controller
             'result' => $products
         ], 200);
     }
+<<<<<<< HEAD
+=======
+
+    public function funnel(Request $request) {
+        $shopId = session('shopId');
+        $funnel = DB::table('product')
+            ->select(DB::raw('shop_id, sum(view) as total_view, sum(add_to_cart) as total_add_to_cart, sum(checkout) as total_checkout'))
+            ->where('shop_id', $shopId)
+            ->whereNull('deleted_at')
+            ->groupBy('shop_id')
+            ->get();
+        return response()->json([
+            'result' => $funnel
+        ], 200);
+    }
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
 }

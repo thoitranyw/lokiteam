@@ -16,6 +16,7 @@ const DashboardComponent = () => {
                 <Sidebar />
                 <Content style={{ padding: '24px', minHeight: 280 }}>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div className={'dashboard-wrap'}>
                         <div className={'dashboard-header'}>
                             <p>Product funnel</p>
@@ -34,6 +35,8 @@ const DashboardComponent = () => {
                                 <p className={'percent-line__text'}>Completion rate</p>
                                 <div className={'percent-line__number'}>
 =======
+=======
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
                     <div class="dashboard-wrap">
                         <div class="dashboard-header">
                             <p>Product funnel</p>
@@ -51,11 +54,15 @@ const DashboardComponent = () => {
                             <div class="dashboard-chart-percent__line">
                                 <p class="percent-line__text">Completion rate</p>
                                 <div class="percent-line__number">
+<<<<<<< HEAD
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
+=======
 >>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
                                     29%
                                 </div>
                             </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                             <div className={'dashboard-chart-percent__col'}>
                                 <p className={'percent-text'}>100% of all</p>
@@ -70,6 +77,8 @@ const DashboardComponent = () => {
                                 <p className={'percent-line__text'}>Completion rate</p>
                                 <div className={'percent-line__number'}>
 =======
+=======
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
                             <div class="dashboard-chart-percent__col">
                                 <p class="percent-text">100% of all</p>
                                 <div class="percent-col">
@@ -82,11 +91,15 @@ const DashboardComponent = () => {
                             <div class="dashboard-chart-percent__line">
                                 <p class="percent-line__text">Completion rate</p>
                                 <div class="percent-line__number">
+<<<<<<< HEAD
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
+=======
 >>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
                                     29%
                                 </div>
                             </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                             <div className={'dashboard-chart-percent__col'}>
                                 <p className={'percent-text'}>100% of all</p>
@@ -113,6 +126,8 @@ const DashboardComponent = () => {
                         </div>
                         <div className={'dashboard-table'}>
 =======
+=======
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
                             <div class="dashboard-chart-percent__col">
                                 <p class="percent-text">100% of all</p>
                                 <div class="percent-col">
@@ -137,6 +152,9 @@ const DashboardComponent = () => {
                             </div>
                         </div>
                         <div class="dashboard-table">
+<<<<<<< HEAD
+>>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
+=======
 >>>>>>> 60baec0c9c0da871d2e5ddc0d7adf34788264111
 
                         </div>
