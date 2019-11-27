@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function getProduct(Request $request) {
         $shopId = session('shopId');
         $productModel = new ProductModel();
-        $productModel->where('shop_id', $shopId);
+        $productModel = $productModel->where('shop_id', $shopId)->with(['slider']);
         if(!empty($request->get('title'))) {
             $productModel = $productModel->where('title', 'LIKE', '%'. $request->get('title') .'%');
         }

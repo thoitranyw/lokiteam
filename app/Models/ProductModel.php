@@ -65,6 +65,11 @@ class ProductModel extends Model
         return $this->belongsTo('App\Models\ShopModel', 'shop_id', 'id');
     }
 
+    public function slider()
+    {
+        return $this->hasOne('App\Models\SliderModel', 'product_id', 'id');
+    }
+
     public function getIdAttribute($id)
     {
         return (string) $id;
