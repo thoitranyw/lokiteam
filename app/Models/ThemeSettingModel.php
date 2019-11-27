@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Slider extends Model
+
+class ThemeSettingModel extends Model
+
 {
     /**
      * @var string
