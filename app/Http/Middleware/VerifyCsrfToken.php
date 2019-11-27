@@ -38,8 +38,10 @@ class VerifyCsrfToken extends Middleware
         'webhook/shop_redact',
         'extension/track_install',
         'extension/track_uninstall',
-        'maintenance'
-
+        'maintenance',
+        'admin-api/sliders/set_position',
+        'admin-api/sliders/unset_position',
+        'admin-api/products/funnel'
 //        'webhook/orders_fulfilled',
 //        'webhook/orders_partially_fulfilled'
     ];

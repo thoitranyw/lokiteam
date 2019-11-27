@@ -24,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['request']->server->set('HTTPS', 'on');
+        if(env('HTTPS_REDIRECT')) {
+            $this->app['request']->server->set('HTTPS', 'on');
+        }
         Schema::defaultStringLength(191);
     }
 }

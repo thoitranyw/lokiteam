@@ -1,7 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/slider.min.css": "/css/slider.min.css",
-    "/css/install_app.min.css": "/css/install_app.min.css",
-    "/css/app.css": "/css/app.css",
-    "/js/install_app.min.js": "/js/install_app.min.js"
+    "/js/app.js": "/js/app.js?id=3d5629cebac68eed65fa",
+    "/css/install_app.min.css": "/css/install_app.min.css?id=ea1d78c125f2e082c1e5",
+    "/css/app.min.css": "/css/app.min.css?id=dfb6637a9323e4b52cae",
+    "/js/dashboard.min.js": "/js/dashboard.min.js?id=384352e71c0ee41713de",
+    "/js/install_app.min.js": "/js/install_app.min.js?id=59329c9e35c9616a0f21",
+    "/js/setting.min.js": "/js/setting.min.js?id=4c97bc8f758a7e0897db"
 }
