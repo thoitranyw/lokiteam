@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['middleware' => ['cors'],'prefix' => 'auth' ], function () {
 	Route::get('install', 'AppsController@installApp')->name('apps.installApp');
     Route::post('installHandle', 'AppsController@installAppHandle')->name('apps.installHandle');
     Route::get('auth', 'AppsController@auth')->name('apps.auth');

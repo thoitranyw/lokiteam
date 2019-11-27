@@ -5,7 +5,7 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\WebhookVerify;
 use App\Http\Middleware\ShopifyCheck;
-
+use App\Http\Middleware\Cors;
 class Kernel extends HttpKernel
 {
     /**
@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'cors' => Cors::class,
     ];
 
     /**
