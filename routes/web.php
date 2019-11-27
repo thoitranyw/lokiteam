@@ -24,8 +24,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => [], 'prefix' => 'webhook'], function() {
 	Route::post('app_uninstalled', 'WebHookController@uninstallApp')->name('webhook.uninstall_app');
     Route::post('shop_update', 'WebHookController@shopUpdate')->name('webhook.shop_update');
-	// Route::post('orders_paid', 'WebHookController@ordersPaid')->name('webhook.orders_paid');
-	// Route::post('orders_updated', 'WebHookController@ordersUpdated')->name('webhook.orders_updated');
+	Route::post('orders_paid', 'WebHookController@ordersUpdated')->name('webhook.orders_paid');
+	Route::post('orders_updated', 'WebHookController@ordersUpdated')->name('webhook.orders_updated');
 	Route::post('created_product', 'WebHookController@createdProduct')->name('webhook.create_product');
 	Route::post('updated_product', 'WebHookController@updatedProduct')->name('webhook.update_product');
 	// Route::post('delete_product', 'WebHookController@deleteProduct')->name('webhook.delete_product');
@@ -38,7 +38,10 @@ Route::group(['middleware' => [], 'prefix' => 'webhook'], function() {
     // Route::get('orders_partially_fulfilled', 'WebHookController@ordersPartiallyFulfilled')->name('webhook.orders_partially_fulfilled');
 });
 
-
+//Route  ThemeSetting
+Route::group(['middleware' => [] ], function() {
+	Route::get('/','DashboardController@index')->name('dashboard');
+});
 
 //Route  Slider
 Route::group(['middleware' => [],'prefix'=>'slider'], function() {
@@ -50,6 +53,7 @@ Route::group(['middleware' => [],'prefix'=>'slider'], function() {
 Route::group(['middleware' => [],'prefix'=>'setting'], function() {
 	Route::get('/', 'ThemeSettingController@index')->name('setting');
 });
+
 
 
 // Route::get('/', function () {
