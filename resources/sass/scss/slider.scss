@@ -1,0 +1,86 @@
+.top-product-wrap{
+    display: flex;
+
+    .top-product__left{
+        width: 40%;
+        padding: 20px;
+        
+        .top-product-title{
+            font-size: 20px;
+            color: violet;
+            display: flex;
+            margin : 0;
+            align-items: center;
+
+            .top-product-no{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #9c5fac;
+                color: #fff;
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+            }
+        }
+
+        .button-show-all{
+            padding : 15px 50px;
+            background: #bcb5b5;
+            color: #155bb2;
+            border: none;
+        }
+    }
+
+    .top-product__right{
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+
+        .top-product-item{
+            padding: 0 20px;
+            .top-product-item__thumnail{
+                position: relative;
+                border: 1px solid #bcb5b5;
+                img{
+                    width: 100%;
+                }
+                span{
+                    position: absolute;
+                    display: flex;
+                    top: 0;
+                    left: 0;
+                    justify-content: center;
+                    align-items: center;
+                    background: #bcb5b5;
+                    color: #fff;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            .top-product-item__title {
+                color: #555555;
+                font-size: 18px;
+            }
+
+            .top-product-item__description{
+                list-style-type: none;
+                padding-left: 0;
+
+                li{
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: 1px solid #555555;
+                    align-items: center;
+
+                    .product-price{
+                        font-size: 20px;
+                        color: #555555;
+                    }
+                }
+            }
+        }
+    }
+}
