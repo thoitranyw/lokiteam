@@ -29,9 +29,10 @@ Route::group(['middleware' => ['webhook.verify'], 'prefix' => 'webhook'], functi
 	Route::post('created_product', 'WebHookController@createdProduct')->name('webhook.create_product');
 	Route::post('updated_product', 'WebHookController@updatedProduct')->name('webhook.update_product');
 });
-
+// 
 Route::group(['middleware' => ['shopify.check'], 'prefix' => 'admin-api'], function () {
 	Route::group(['middleware' => [], 'prefix' => 'products'], function () {
+		Route::get('/funnel','ProductController@funnel')->name('admin-api.products.funnel');
 		Route::get('/','ProductController@getProduct')->name('admin-api.products.getProduct');
 	});
 	Route::group(['middleware' => [], 'prefix' => 'sliders'], function () {

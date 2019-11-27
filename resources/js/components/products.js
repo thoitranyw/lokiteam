@@ -8,6 +8,12 @@ import 'antd/dist/antd.css';
 const { Header, Content } = Layout;
 
 const data = [];
+axios.get(window.appUrl + '/admin-api/products').then(res => {
+    console.log('res', res)
+})
+.catch((error) => {
+
+})
 for (let i = 0; i < 10; i++) {
   data.push({
     key: i.toString(),
@@ -72,13 +78,13 @@ class EditableTable extends React.Component {
       {
         title: 'Product name',
         dataIndex: 'product_name',
-        width: '45%',
+        width: '35%',
         editable: false,
       },
       {
         title: 'Viewed product',
         dataIndex: 'viewed_product',
-        width: '15%',
+        width: '12%',
         editable: false,
       },
       {
@@ -91,7 +97,7 @@ class EditableTable extends React.Component {
         title: 'Checkouted product',
         dataIndex: 'checkouted_product',
         width: '15%',
-        editable: true,
+        editable: false,
       },
       {
         title: 'Position',
@@ -102,6 +108,7 @@ class EditableTable extends React.Component {
       {
         title: 'Action',
         dataIndex: 'operation',
+        width: '16%',
         render: (text, record) => {
           const { editingKey } = this.state;
           const editable = this.isEditing(record);

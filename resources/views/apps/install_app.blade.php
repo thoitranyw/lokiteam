@@ -1,4 +1,3 @@
-
 <script>
     window.appUrl = "{{ env('APP_URL') }}"
 </script>
