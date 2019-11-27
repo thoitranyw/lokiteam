@@ -28,6 +28,34 @@ class ProductController extends Controller
         ], 200);
     }
 
+    public function incrementView(Request $request, $shopId) {
+        $productId = $request->input('product_id');
+        if($product = ProductModel::find($productId)) {
+            $product->increment('view');
+            $product->save();
+            return response()->json([
+                'status' => true
+            ]);
+        }
+        return response()->json([
+            'status' => false
+        ]);
+    }
+
+    public function incrementAddToCart(Request $request, $shopId) {
+        $productId = $request->input('product_id');
+        if($product = ProductModel::find($productId)) {
+            $product->increment('add_to_cart');
+            $product->save();
+            return response()->json([
+                'status' => true
+            ]);
+        }
+        return response()->json([
+            'status' => false
+        ]);
+    }
+
     public function funnel(Request $request) {
         $shopId = session('shopId');
         $funnel = DB::table('product')
