@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\AddCoreLokiEvent' => [
             'App\Listeners\AddCoreLokiListener',
         ],
+        'App\Events\InjectAssetEvent' => [
+            'App\Listeners\InjectAssetListener',
+        ]
     ];
 
     /**
