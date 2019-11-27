@@ -14,24 +14,39 @@
   height: 100%;
 }
 
+.ant-layout-sider {
+  background: none !important;
+}
+
+.ant-layout-sider .ant-menu {
+  background: rgba(24, 144, 255, 0.05) !important;
+}
+
+.ant-menu-item .anticon {
+  font-size: 16px;
+}
+
+.ant-menu-item .nav-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .ant-layout-header {
   position: relative;
-  background: #FFF;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  background: #1890ff;
+  box-shadow: 0 0 4px 2px #09579e;
   z-index: 10;
 }
 
 .ant-layout-content {
   background: #FFF;
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-wrap .dashboard-header {
-  text-align: center;
-  color: #1890ff;
+  color: #0084fe;
   font-size: 18px;
   font-weight: 600;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e0ecf7;
   margin-bottom: 30px;
 }
 
@@ -63,7 +78,7 @@
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
-  background: #e8e8e8;
+  background: #e0ecf7;
   min-height: 50px;
   height: 170px;
   position: relative;
@@ -85,6 +100,7 @@
   position: absolute;
   bottom: 10px;
   color: white;
+  font-size: 22px;
 }
 
 .dashboard-wrap .dashboard-chart p.chart-statistic-number {
@@ -97,11 +113,11 @@
   width: 2px;
   height: 70%;
   min-height: 70px;
-  background: #e8e8e8;
+  background: #e0ecf7;
 }
 
 .dashboard-wrap .dashboard-chart .dashboard-chart-percent__line .percent-line__number {
-  background: #e8e8e8;
+  background: #e0ecf7;
   padding: 10px 20px;
   position: relative;
 }
@@ -113,7 +129,7 @@
   height: 28px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  background: #e8e8e8;
+  background: #e0ecf7;
   top: 6.5px;
   right: -14px;
   z-index: 0;
@@ -123,7 +139,7 @@
   width: 2px;
   height: 30px;
   margin-top: 5px;
-  background: #e8e8e8;
+  background: #e0ecf7;
 }
 
 .dashboard-wrap .dashboard-statistic {
@@ -132,7 +148,7 @@
   -webkit-box-pack: center;
           justify-content: center;
   margin-top: 40px;
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #e0ecf7;
   padding-top: 20px;
 }
 
@@ -275,9 +291,15 @@
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
   margin-right: 10px;
+  min-width: 50px;
+  min-height: 50px;
 }
 
 .ant-table-row-cell-product-img img {
   max-width: 100%;
+}
+
+.loki-pagination-wrap {
+  margin-top: 24px;
 }
 

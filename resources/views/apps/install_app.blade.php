@@ -15,6 +15,9 @@
                 <div id="install__app">
                     
                 </div>
+                <div style="height: 20px;">
+                    <div class="valid-error-shop" style="display: none;">Invalid input</div>
+                </div>
             </div>
         </div>
         

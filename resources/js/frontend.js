@@ -36,7 +36,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 var loki_track_product = getCookie("loki_track_product");
                 if (loki_track_product == "") {
                     setCookie("loki_track_product", 'viewed', 1);
-                    fetch(apiUrlView, { method: 'post', product_id: productId })
+                    fetch(apiUrlView, { 
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        method: 'post', 
+                        body: JSON.stringify({product_id: productId})
+                    })
                     .then(async res => {
                         console.log('res', res)
                     })
@@ -51,7 +58,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
             if(document.getElementById('loki-product-page')) {
                 var productId = document.getElementById('loki-product-page').getAttribute('data-id')
                 console.log('productId', productId)
-                fetch(apiUrlAddToCart, {method: 'post', product_id: productId})
+                fetch(apiUrlAddToCart, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'post', 
+                    body: JSON.stringify({product_id: productId})
+                })
                 .then(async res => {
                     console.log(await res.json())
                 })
@@ -62,7 +76,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
         if(document.getElementById('loki-shopid-app')) {
             console.log('shopid',shopid)
             var apiUrl = 'https://ef58b7cf.ap.ngrok.io/theme/' + shopid;
-            fetch(apiUrl, {})
+            fetch(apiUrl, { 
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            })
             .then(async res => {
                 console.log(await res.json())
                 var result = await res.json()
@@ -78,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
         
     }
-    // init()
+    init()
     trackViewProduct()
     trackAddToCart()
 })

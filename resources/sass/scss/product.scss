@@ -14,10 +14,15 @@
     box-shadow: 0 0 3px 1px rgba(#000, 0.08);
     border-radius: 4px;
     margin-right: 10px;
+    min-width: 50px;
+    min-height: 50px;
     img {
         max-width:100%;
     }
 }
 .ant-table-row-cell-product-name {
 
+}
+.loki-pagination-wrap {
+    margin-top: 24px;
 }

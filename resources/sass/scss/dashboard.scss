@@ -9,26 +9,47 @@
 }
 .ant-layout-has-sider {
     height: 100%;
+    
+}
+.ant-layout-sider {
+    background: none !important;
+    .ant-menu {
+        background: rgba(#1890ff, 0.05) !important;
+    }
+}
+.ant-menu-item {
+    .anticon {
+        font-size: 16px;
+    }
+    .nav-text {
+        font-size: 16px;
+        font-weight: 600;
+    }
+} 
+.ant-layout-content {
+    // background: rgba(#1890ff, 0.05) !important;
 }
 .ant-layout-header {
     position: relative;
-    background: #FFF;
-    box-shadow: 0 0 2px 1px rgba(#000, 0.3);
+    background: #1890ff;
+    box-shadow: 0 0 4px 2px rgb(9, 87, 158);
     z-index: 10;
 }
 .ant-layout-content {
     background: #FFF;
-    border-left: 1px solid rgba(#000, 0.1);
+    // border-left: 1px solid rgba(#000, 0.1);
+}
+.loki-container-app {
+
 }
 
 .dashboard-wrap{
-
     .dashboard-header {
-        text-align: center;
-        color: #1890ff;
+        // text-align: center;
+        color: darken(#1890ff, 5%);
         font-size: 18px;
         font-weight: 600;
-        border-bottom: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e0ecf7;
         margin-bottom: 30px;
     }
 
@@ -51,7 +72,7 @@
             width: 50px;
             display: flex;
             justify-content: center;
-            background: #e8e8e8;
+            background: #e0ecf7;
             min-height: 50px;
             height: 170px;
             position: relative;
@@ -70,6 +91,7 @@
                 position: absolute;
                 bottom: 10px;
                 color: white;
+                font-size: 22px;
             }
         }
 
@@ -84,10 +106,10 @@
                 width: 2px;
                 height: 70%;
                 min-height: 70px;
-                background: #e8e8e8;
+                background: #e0ecf7;
             }
             .percent-line__number {
-                background: #e8e8e8;
+                background: #e0ecf7;
                 padding: 10px 20px;
                 position: relative;
                 &:before{
@@ -96,7 +118,7 @@
                     width: 27.5px;
                     height: 28px;
                     transform: rotate(45deg);
-                    background: #e8e8e8;
+                    background: #e0ecf7;
                     top: 6.5px;
                     right: -14px;
                     z-index: 0;
@@ -106,7 +128,7 @@
                 width: 2px;
                 height: 30px;
                 margin-top: 5px;
-                background: #e8e8e8;
+                background: #e0ecf7;
             }
         }
     }
@@ -115,7 +137,7 @@
         display: flex;
         justify-content: center;
         margin-top: 40px;
-        border-top: 1px solid #e8e8e8;
+        border-top: 1px solid #e0ecf7;
         padding-top: 20px;
 
         >div{

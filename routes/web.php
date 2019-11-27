@@ -30,7 +30,7 @@ Route::group(['middleware' => ['webhook.verify'], 'prefix' => 'webhook'], functi
 	Route::post('updated_product', 'WebHookController@updatedProduct')->name('webhook.update_product');
 });
 
-Route::group(['middleware' => [], 'prefix' => 'theme'], function() {
+Route::group(['middleware' => ['cors'], 'prefix' => 'theme'], function() {
 	Route::get('/{shopId}','SliderController@getSliderTheme')->name('admin-api.sliders.getSliderTheme');
 	Route::post('/{shopId}/view','ProductController@incrementView')->name('admin-api.sliders.incrementView');
 	Route::post('/{shopId}/add_to_cart','ProductController@incrementAddToCart')->name('admin-api.sliders.incrementAddToCart');

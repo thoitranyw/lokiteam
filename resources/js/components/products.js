@@ -214,7 +214,10 @@ class EditableTable extends React.Component {
           } else {
             newData.push(row);
             this.setState({ data: newData, editingKey: '' });
-            axios.post(window.appUrl + '/admin-api/sliders/set_position')
+            axios.post(window.appUrl + '/admin-api/sliders/set_position', {
+                product_id: key,
+                position: row.position_product
+            })
             .then(res => {
                 console.log('res', res)
             })
@@ -311,7 +314,9 @@ class EditableTable extends React.Component {
             }}
           />
         </EditableContext.Provider>
-        <Pagination current={this.state.page} onChange={this.onChangePage} total={50} />
+        <div className={'loki-pagination-wrap'}>
+            <Pagination current={this.state.page} onChange={this.onChangePage} total={50} />
+        </div>
       </div>
     );
   }

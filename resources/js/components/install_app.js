@@ -8,19 +8,25 @@ const { Search } = Input;
 const InputShopify = () => {
     function installForm(shop) {
         console.log(shop)
-        axios.post(window.appUrl + '/auth/installHandle', { shop: shop})
-        .then(res => {
-            console.log('res', res) 
-            const { data = null } = res
-            console.log('data', data)
-            if(data && data.url) {
-                console.log(data.url)
-                window.location.href = data.url 
-            }
-        } )
-        .catch(function(error) {
+        if(shop) {
+            axios.post(window.appUrl + '/auth/installHandle', { shop: shop})
+            .then(res => {
+                console.log('res', res) 
+                const { data = null } = res
+                console.log('data', data)
+                if(data && data.url) {
+                    console.log(data.url)
+                    document.querySelector('.valid-error-shop').style.display = 'none';
+                    window.location.href = data.url 
+                }
+            } )
+            .catch(function(error) {
 
-        })
+            })
+        } else {
+            document.querySelector('.valid-error-shop').style.display = 'block';
+        }
+        
     }
     return (
         <div>
