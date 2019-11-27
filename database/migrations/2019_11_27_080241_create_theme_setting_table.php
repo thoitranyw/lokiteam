@@ -14,8 +14,10 @@ class CreateThemeSettingTable extends Migration
     public function up()
     {
         Schema::create('theme_setting', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('shop_id'); 
+            $table->string('settings',2000)->nullable();
             $table->timestamps();
+            $table->index('shop_id');
         });
     }
 
