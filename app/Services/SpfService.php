@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
-
+use Illuminate\Support\Facades\App;
 class SpfService {
 
     /**
@@ -14,6 +14,7 @@ class SpfService {
      */
 	private $_shopDomain;
 
+    protected $_shopify; 
     /**
      * @var
      */
@@ -21,6 +22,7 @@ class SpfService {
 
 	public function __construct($shopDomain = '', $accessToken = '')
     {
+       
         /**
          *
          */
@@ -36,6 +38,7 @@ class SpfService {
      * @param string $accessToken
      */
 	public function setParameter($shopDomain = '', $accessToken = '') {
+       
 		$this->_shopDomain  = ! empty( $shopDomain ) ? $shopDomain : session( 'shopDomain' );
 		$this->_accessToken = ! empty( $accessToken ) ? $accessToken : session( 'accessToken' );
 	}
@@ -54,10 +57,11 @@ class SpfService {
 			'code'          => $code
 		);
 		try{
+          
             $response = $client->post("https://" . $this->_shopDomain . "/admin/oauth/access_token", ['form_params' => $data]);
-
+           
             $response = json_decode( $response->getBody()->getContents() );
-
+            
             return $response->access_token;
         } catch (\Exception $exception)
         {
@@ -270,5 +274,95 @@ class SpfService {
             return ['status' => false, 'message' => $exception->getMessage()];
         }
 
+    }
+
+
+    /**
+	 * @param       $url
+	 * @param array $data
+	 *
+	 * @return mixed
+	 */
+	public function getRequestApi($shopDomain ,$accessToken,  $data = [],$appVerSion = '2019-07')
+	{
+		$client = new Client();
+		try{
+            $response = $client->request( 'GET', "https://$shopDomain/admin/api/$appVerSion/themes.json",
+                [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Shopify-Access-Token' => $accessToken
+                    ]
+                    
+                ]
+            );
+            
+            return ['status' => true, 'data' => json_decode($response->getBody()->getContents())];
+        } catch (\Exception $exception)
+        {
+            return ['status' => false, 'message' => $exception->getMessage()];
+        }
+    }
+    
+
+    public function getAssetValue($shopDmain ,$accessToken,$appVs = "2019-07",  $currentTheme = 'themes.json', $fileAsset = '', $url = '')
+    {
+        try {
+            $client = new Client();
+            $response = $client->request(
+                'GET',
+                "https://$shopDmain/admin/api/$appVs/$currentTheme/$url",
+                [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Shopify-Access-Token' =>$accessToken
+                ],
+                'query' =>[
+                        'asset' => [
+                            'key' => $fileAsset,
+                        ]
+                    ]
+                ]
+            );
+            if($responseType == 'content'){
+                return json_decode($response->getBody()->getContents());
+            }
+        }catch(\Exception $exception){
+            return ['status' => false, 'message' => $exception->getMessage()];
+        }
+    }
+    // funtion update themes $shopifyApi->updateAssetValue($shopDomain, $accessToken, "2019-07", $lokiFile, $themeId, "Thach");
+    public function updateAssetValue($shopDmain ,$accessToken,$appVs = "2019-07", $fileAsset, $themeId,  $newAssetValue ='')
+    {
+       
+        try {
+            $client = new Client();
+           
+            $responseType = $client->request(
+                'PUT',
+                "https://$shopDmain/admin/api/$appVs/themes/$themeId/assets.json",
+                [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Shopify-Access-Token' =>$accessToken
+                ],
+                'query' =>[
+                        'asset' => [
+                            'key' => $fileAsset,
+                            'value' => $newAssetValue
+                        ]
+                    ]
+                ]
+            );
+           
+          
+            $results =  json_decode($responseType->getBody()->getContents());
+            if(!empty($results)){
+                return ['status' => true, 'message' => 'Successfully'];
+            }
+
+        }catch(\Exception $exception){
+            return ['status' => false, 'message' => $exception->getMessage()];
+        }
     }
 }

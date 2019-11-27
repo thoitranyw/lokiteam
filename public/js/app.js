@@ -51206,16 +51206,28 @@ if (document.getElementById('example')) {
 
 /***/ }),
 
+/***/ "./resources/sass/scss/slider.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/scss/slider.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!****************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/scss/install_app.scss ./resources/sass/app.scss ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/scss/slider.scss ./resources/sass/scss/install_app.scss ./resources/sass/app.scss ***!
+  \**************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Resources\src\alicashback\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Resources\src\alicashback\resources\sass\scss\install_app.scss */"./resources/sass/scss/install_app.scss");
-module.exports = __webpack_require__(/*! C:\Resources\src\alicashback\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\hngna\Documents\lokiteam\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\hngna\Documents\lokiteam\resources\sass\scss\slider.scss */"./resources/sass/scss/slider.scss");
+__webpack_require__(/*! C:\Users\hngna\Documents\lokiteam\resources\sass\scss\install_app.scss */"./resources/sass/scss/install_app.scss");
+module.exports = __webpack_require__(/*! C:\Users\hngna\Documents\lokiteam\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
