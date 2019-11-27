@@ -17,12 +17,17 @@ const Sidebar = () => {
                 style={{ height: '100%', borderRight: 0 }}
                 theme={'light'}
             >
-                <Menu.Item key="/" onClick={ () => setLocationPathName({ pathname: '/'}) }>
+                <Menu.Item key="/home" onClick={ () => setLocationPathName({ pathname: '/'}) }>
                     <Icon type="home" />
                     <span className="nav-text">Home</span>
                 </Menu.Item>
 
-                <Menu.Item key="7">
+                <Menu.Item key="/setting">
+                    <Icon type="setting" />
+                    <span className="nav-text">Setting</span>
+                </Menu.Item>
+
+                <Menu.Item key="/logout">
                     <Icon type="chrome" />
                     <span className="nav-text">Logout</span>
                 </Menu.Item>

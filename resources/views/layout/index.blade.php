@@ -11,7 +11,8 @@
             @yield('content_container')
         </div>
     </div>
-
+    
+    <link href="{{ URL::asset(mix('css/app.min.css')) }}" rel="stylesheet">
     @yield('footer_container')
 </body>
 </html>

@@ -1,14 +1,9 @@
 {
-<<<<<<< HEAD
-    "/js/app.js": "/js/app.js?id=2018765b4150c2d21a79",
+    "/js/app.js": "/js/app.js?id=375c5d3c4788d9c49aa0",
+    "/css/slider.min.css": "/css/slider.min.css?id=0f9fe8745394890bc653",
     "/css/install_app.min.css": "/css/install_app.min.css?id=ea1d78c125f2e082c1e5",
-    "/css/app.min.css": "/css/app.min.css?id=4ae66cbd16e17fc6ac7b",
-    "/js/dashboard.min.js": "/js/dashboard.min.js?id=1ff34cdb10ff188e512b",
-    "/js/install_app.min.js": "/js/install_app.min.js?id=d03bfa1603de154a708d"
-=======
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/slider.min.css": "/css/slider.min.css",
-    "/js/install_app.min.js": "/js/install_app.min.js"
->>>>>>> dd65c3309cd61b685322815eea2c590c0c337d4d
+    "/css/app.min.css": "/css/app.min.css?id=cd7df053d62510cebe89",
+    "/js/dashboard.min.js": "/js/dashboard.min.js?id=073a7a739b81a8c992d4",
+    "/js/install_app.min.js": "/js/install_app.min.js?id=301ece09952fa6e788e0",
+    "/js/setting.min.js": "/js/setting.min.js?id=69d8bb9962a5350a46fe"
 }

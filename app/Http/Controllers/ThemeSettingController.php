@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 class ThemeSettingController extends Controller {
 
     public function index (){
