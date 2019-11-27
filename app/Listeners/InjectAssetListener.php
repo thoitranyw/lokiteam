@@ -43,7 +43,7 @@ class InjectAssetListener  {
             $themeId = array_values($theme)[0]->id;
           
             $lokiFile =  self::LAYOUT_THEME ;
-            $script = '<script src="' . env('APP_URL') . '/js/frontend.min.js">window.shopId = "'. $shopId .'"</script>';
+            $script = '<script src="' . env('APP_URL') . '/js/frontend.min.js"></script>';
             $resultLayout = $shopifyApi->getAssetValue($shopDomain, $accessToken, "2019-07",  $lokiFile, $themeId, $script);
              
             if ($resultLayout['status']) {

@@ -1,11 +1,16 @@
 function init() {
     var shopid = document.getElementById('loki-shopid-app').value
-    console.log('shopid',shopid)
-    var apiUrl = 'https://ef58b7cf.ap.ngrok.io/';
-    fetch(apiUrl, {
-        
-    }).then(res => {
-
-    })
+    if(document.getElementById('loki-shopid-app')) {
+        console.log('shopid',shopid)
+        var apiUrl = 'https://ef58b7cf.ap.ngrok.io/theme/' + shopid;
+        fetch(apiUrl, {
+            
+        }).then(async res => {
+            console.log(await res.json())
+            var result = await res.json()
+            
+        })
+    }
+    
 }
 init()
