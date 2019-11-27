@@ -1,0 +1,16 @@
+.loki-wrapper {
+    height: 100%;
+}
+#loki-container-wrap {
+    height: 100%;
+    > .ant-layout {
+        height: 100%;
+    }
+}
+.ant-layout-has-sider {
+    height: 100%;
+}
+.ant-layout-header {
+    background: #FFF;
+    box-shadow: 0 0 2px 1px rgba(#000, 0.1);
+}

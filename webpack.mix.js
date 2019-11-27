@@ -13,5 +13,6 @@ const mix = require('laravel-mix');
 
 mix.react('resources/js/app.js', 'public/js')
    .react('resources/js/components/install_app.js', 'public/js/install_app.min.js')
+   .react('resources/js/components/dashboard.js', 'public/js/dashboard.min.js').version()
    .sass('resources/sass/scss/install_app.scss', 'public/css/install_app.min.css')
-   .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css/app.min.css');

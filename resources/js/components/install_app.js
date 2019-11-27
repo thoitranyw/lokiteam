@@ -10,7 +10,7 @@ const InputShopify = () => {
         console.log(shop)
         axios.post(window.appUrl + '/auth/installHandle', { shop: shop})
         .then(res => {
-            console.log('res', res)
+            console.log('res', res) 
             const { data = null } = res
             console.log('data', data)
             if(data && data.url) {
@@ -24,12 +24,7 @@ const InputShopify = () => {
     }
     return (
         <div>
-            <Search
-              placeholder="example: lokiapps@myshopify.com"
-              enterButton="Login"
-              size="large"
-              onSearch={value => installForm(value)}
-            />
+            
         </div>
     )
 }

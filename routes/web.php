@@ -38,7 +38,10 @@ Route::group(['middleware' => [], 'prefix' => 'webhook'], function() {
     // Route::get('orders_partially_fulfilled', 'WebHookController@ordersPartiallyFulfilled')->name('webhook.orders_partially_fulfilled');
 });
 
-
+//Route  ThemeSetting
+Route::group(['middleware' => [] ], function() {
+	Route::get('/','DashboardController@index')->name('dashboard');
+});
 
 //Route  Slider
 Route::group(['middleware' => [],'prefix'=>'slider'], function() {
@@ -50,6 +53,7 @@ Route::group(['middleware' => [],'prefix'=>'slider'], function() {
 Route::group(['middleware' => [],'prefix'=>'setting'], function() {
 	Route::get('/', 'ThemeSettingController@index')->name('setting');
 });
+
 
 
 // Route::get('/', function () {
