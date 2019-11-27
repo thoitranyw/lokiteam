@@ -302,7 +302,7 @@ class SpfService {
             $client = new Client();
             $response = $client->request(
                 'GET',
-                "https://$shopDmain/admin/api/$appVs/$currentTheme/$url",
+                "https://$shopDmain/admin/api/$appVs/themes/$themeId/assets.json",
                 [
                 'headers' => [
                     'Content-Type' => 'application/json',
@@ -315,14 +315,15 @@ class SpfService {
                     ]
                 ]
             );
-            if($responseType == 'content'){
-                return json_decode($response->getBody()->getContents());
-            }
+
+            $assetValue  = json_decode($response->getBody()->getContents());
+            
+            return ['status' => true, 'assetValue' => $assetValue->asset];
         }catch(\Exception $exception){
             return ['status' => false, 'message' => $exception->getMessage()];
         }
     }
-    // funtion update themes $shopifyApi->updateAssetValue($shopDomain, $accessToken, "2019-07", $lokiFile, $themeId, "Thach");
+
     public function updateAssetValue($shopDmain ,$accessToken,$appVs = "2019-07", $fileAsset, $themeId,  $newAssetValue ='')
     {
        

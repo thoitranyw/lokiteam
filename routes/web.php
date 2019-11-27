@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['middleware' => ['cors'],'prefix' => 'auth' ], function () {
 	Route::get('install', 'AppsController@installApp')->name('apps.installApp');
     Route::post('installHandle', 'AppsController@installAppHandle')->name('apps.installHandle');
     Route::get('auth', 'AppsController@auth')->name('apps.auth');
@@ -36,7 +36,7 @@ Route::group(['middleware' => [], 'prefix' => 'theme'], function() {
 	Route::post('/{shopId}/add_to_cart','ProductController@incrementAddToCart')->name('admin-api.sliders.incrementAddToCart');
 });
 
-Route::get('SyncProduct','AppsController@SyncProduct')->name('admin-api.sliders.SyncProduct');
+Route::get('SyncProduct/{shopId}','AppsController@SyncProduct')->name('admin-api.sliders.SyncProduct');
 
 // 
 Route::group(['middleware' => ['shopify.check'], 'prefix' => 'admin-api'], function () {
