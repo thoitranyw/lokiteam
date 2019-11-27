@@ -11,6 +11,12 @@
     height: 100%;
 }
 .ant-layout-header {
+    position: relative;
     background: #FFF;
-    box-shadow: 0 0 2px 1px rgba(#000, 0.1);
+    box-shadow: 0 0 2px 1px rgba(#000, 0.3);
+    z-index: 10;
+}
+.ant-layout-content {
+    background: #FFF;
+    border-left: 1px solid rgba(#000, 0.1);
 }
