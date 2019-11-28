@@ -36,6 +36,9 @@
   background: #1890ff;
   box-shadow: 0 0 4px 2px #09579e;
   z-index: 10;
+  padding: 0;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0e65b5), to(#1890ff));
+  background-image: linear-gradient(to right, #0e65b5, #1890ff);
 }
 
 .ant-layout-content {
@@ -161,6 +164,17 @@
   color: black;
   font-weight: bold;
   font-size: 22px;
+}
+
+.logo-loki-app {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 32px;
+  font-weight: 400;
+  color: #FFF;
+  line-height: 64px;
+  display: inline-block;
+  width: 264px;
+  text-align: center;
 }
 
 .top-product-wrap {

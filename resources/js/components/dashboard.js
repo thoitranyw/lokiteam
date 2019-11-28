@@ -51,7 +51,7 @@ const DashboardComponent = () => {
 
     return ( 
         <Layout>
-            <Header>Header</Header>
+            <Header><span className={'logo-loki-app'}>Loki Apps</span></Header>
             <Layout>
                 <Sidebar />
                 <Content style={{ padding: '24px', minHeight: 280 }}>
