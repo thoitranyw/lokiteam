@@ -4,6 +4,7 @@
     @include('layout.head')
     <script>
         window.appUrl = "{{ env('APP_URL') }}"
+        window.shopDomain = "{{ session('shopDomain') }}"
     </script>
 </head>
 

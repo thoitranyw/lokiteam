@@ -119,7 +119,7 @@ class AppsController extends Controller
     public function logout(Request $request)
     {
         $request->session()->flush();
-        return redirect(route('dashboard.index'));
+        return redirect(route('apps.installApp'));
     }
 
     /**

@@ -69,4 +69,18 @@ class ProductController extends Controller
             'result' => $funnel
         ], 200);
     }
+
+    public function topProduct(Request $request) {
+        $shopId = session('shopId');
+        $topView = ProductModel::where('shop_id', $shopId)->orderBy('view', 'desc')->first();
+        $topAddToCart = ProductModel::where('shop_id', $shopId)->orderBy('add_to_cart', 'desc')->first();
+        $topCheckout = ProductModel::where('shop_id', $shopId)->orderBy('checkout', 'desc')->first();
+        return response()->json([
+            'result' => [
+                'top_view' => $topView,
+                'top_add_to_cart' => $topAddToCart,
+                'top_checkout' => $topCheckout,
+            ]
+        ], 200);
+    }
 }

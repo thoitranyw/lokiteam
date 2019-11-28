@@ -35,7 +35,7 @@ class ProductModel extends Model
         'title',
         'handle',
         'body_html',
-        // 'image',
+        'image',
         // 'custom_collection',
         // 'tag',
         // 'status',
