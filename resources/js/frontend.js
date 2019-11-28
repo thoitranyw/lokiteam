@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(event) {
     var shopid = document.getElementById('loki-shopid-app').value
-    var apiUrl = 'https://e71f720b.ap.ngrok.io/theme/' + shopid;
+    var apiUrl = 'https://d9ba5cba.ap.ngrok.io/theme/' + shopid;
     var apiUrlView = apiUrl + '/view';
     var apiUrlAddToCart = apiUrl + '/add_to_cart';
 
