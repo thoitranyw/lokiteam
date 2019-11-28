@@ -23,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\InjectAssetEvent' => [
             'App\Listeners\InjectAssetListener',
+        ],
+        'App\Events\AddCodeProductThemeEvent' => [
+            'App\Listeners\AddCodeProductThemeListener',
         ]
     ];
 
