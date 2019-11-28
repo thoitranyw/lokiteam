@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(event) {
     var shopid = document.getElementById('loki-shopid-app').value
-    var apiUrl = 'https://ef58b7cf.ap.ngrok.io/theme/' + shopid;
+    var apiUrl = 'https://e71f720b.ap.ngrok.io/theme/' + shopid;
     var apiUrlView = apiUrl + '/view';
     var apiUrlAddToCart = apiUrl + '/add_to_cart';
 
@@ -35,18 +35,29 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 console.log('productId', productId)
                 var loki_track_product = getCookie("loki_track_product");
                 if (loki_track_product == "") {
-                    setCookie("loki_track_product", 'viewed', 1);
+
+                    setCookie("loki_track_product", JSON.stringify([productId]), 1);
                     fetch(apiUrlView, { 
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
                         method: 'post', 
                         body: JSON.stringify({product_id: productId})
                     })
                     .then(async res => {
-                        console.log('res', res)
+                        var result = await res.json()
                     })
+                } else {
+                    console.log(loki_track_product)
+                    var productIds = JSON.parse(loki_track_product)
+                    if(!productIds.includes(productId)) {
+                        productIds.push(productId)
+                        setCookie("loki_track_product", JSON.stringify(productIds), 1);
+                        fetch(apiUrlView, { 
+                            method: 'post', 
+                            body: JSON.stringify({product_id: productId})
+                        })
+                        .then(async res => {
+                            var result = await res.json()
+                        })
+                    }
                 }
             }
         }
@@ -54,45 +65,49 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
 
     function trackAddToCart() {
-        document.querySelector('form[action="/cart/add"]').addEventListener('submit', function(){
-            if(document.getElementById('loki-product-page')) {
-                var productId = document.getElementById('loki-product-page').getAttribute('data-id')
-                console.log('productId', productId)
-                fetch(apiUrlAddToCart, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    method: 'post', 
-                    body: JSON.stringify({product_id: productId})
-                })
-                .then(async res => {
-                    console.log(await res.json())
-                })
-            }
-        });
+        if(document.querySelector('form[action="/cart/add"]')) {
+            document.querySelector('form[action="/cart/add"]').addEventListener('submit', function(){
+                if(document.getElementById('loki-product-page')) {
+                    var productId = document.getElementById('loki-product-page').getAttribute('data-id')
+                    console.log('productId', productId)
+                    fetch(apiUrlAddToCart, {
+                        method: 'post',
+                        body: JSON.stringify({product_id: productId})
+                    })
+                    .then(async res => {
+                        var result = await res.json()
+                        console.log('result', result)
+                    })
+                }
+            });
+        }
+        
     }
     function init() {
         if(document.getElementById('loki-shopid-app')) {
-            console.log('shopid',shopid)
-            var apiUrl = 'https://ef58b7cf.ap.ngrok.io/theme/' + shopid;
+  
             fetch(apiUrl, { 
-                method: 'get',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
+                method: 'get'
             })
             .then(async res => {
-                console.log(await res.json())
-                var result = await res.json()
-                var html = `<ul id="slides">
-                            <li class="slide showing">Slide 1</li>
-                            <li class="slide">Slide 2</li>
-                            <li class="slide">Slide 3</li>
-                            <li class="slide">Slide 4</li>
-                            <li class="slide">Slide 5</li>
+                var _result = await res.json()
+                const { result: products } = _result
+                console.log(products)
+                var html = `<h2>Top Sales</h2><ul class="loki-slides">
+                        
                         </ul>`
+            
+                document.querySelector('#loki-product-page').insertAdjacentHTML('beforeend', html)
+                var itemHtml = ''
+                var hostname = window.location.hostname
+                console.log(hostname)
+                for(let i = 0; i < 5; i++) {
+                    const { product } = products[i]
+                    console.log(products[i])
+                    itemHtml += '<li><div class="loki-slides-item"><div class="loki-slides-item-img"><a href="https://'+ hostname +'/products/'+ product.handle +'"><img src="'+ product.image +'" /></a></div><h2><a href="https://'+ hostname +'/products/'+ product.handle +'">'+ product.title +'</a></h2></div></li>'
+                }
+                console.log('itemHtml',itemHtml)
+                document.querySelector('.loki-slides').insertAdjacentHTML('beforeend', itemHtml)
                 
             })
         }

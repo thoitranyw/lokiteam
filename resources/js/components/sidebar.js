@@ -7,7 +7,10 @@ const { Sider } = Layout;
 
 const Sidebar = () => {
     const [locationPathName, setLocationPathName] = useState({ pathname: window.location.pathname });
-    console.log('window.appUrl', window.appUrl)
+
+    function locationHref(pathname) {
+        window.location.href = window.appUrl + pathname
+    }
     return (
         <Sider width={264}>
             <Menu
@@ -17,17 +20,17 @@ const Sidebar = () => {
                 style={{ height: '100%', borderRight: 0 }}
                 theme={'light'}
             >
-                <Menu.Item key="/" onClick={ () => setLocationPathName({ pathname: '/'}) }>
+                <Menu.Item key="/" onClick={ () => locationHref('/') }>
                     <Icon type="home" />
                     <span className="nav-text">Dashboard</span>
                 </Menu.Item>
 
-                <Menu.Item key="/products">
+                <Menu.Item key="/products" onClick={ () => locationHref('/products') }>
                     <Icon type="setting" />
                     <span className="nav-text">Products</span>
                 </Menu.Item>
 
-                <Menu.Item key="/logout">
+                <Menu.Item key="/logout" onClick={ () => locationHref( '/logout') }>
                     <Icon type="logout" />
                     <span className="nav-text">Logout</span>
                 </Menu.Item>
