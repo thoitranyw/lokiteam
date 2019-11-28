@@ -155,11 +155,11 @@ class EditableTable extends React.Component {
     const urlParams = new URLSearchParams(window.location.search);
     const sortBy = urlParams.get('sortby');
     const page = urlParams.get('page');
-    this.setState({page: Number(page), sort_by: sortBy})
+    this.setState({page: page ? Number(page) : 1, sort_by: sortBy ? sortBy : ''})
     axios.get(window.appUrl + '/admin-api/products', {
       params: {
-        sortby: sortBy,
-        page: page
+        sortby: sortBy ? sortBy : '',
+        page: page ? page : 1
       }
     }).then(res => {
         let baseData = res.data.result.data

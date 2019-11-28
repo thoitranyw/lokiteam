@@ -43,6 +43,7 @@ Route::group(['middleware' => ['shopify.check'], 'prefix' => 'admin-api'], funct
 	Route::group(['middleware' => [], 'prefix' => 'products'], function () {
 		Route::get('/funnel','ProductController@funnel')->name('admin-api.products.funnel');
 		Route::get('/','ProductController@getProduct')->name('admin-api.products.getProduct');
+		Route::get('/top-product','ProductController@topProduct')->name('admin-api.products.topProduct');
 	});
 	Route::group(['middleware' => [], 'prefix' => 'sliders'], function () {
 		Route::get('/','SliderController@getSliderAdmin')->name('admin-api.sliders.getSliderAdmin');

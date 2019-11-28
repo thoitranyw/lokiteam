@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd'
 
@@ -11,6 +11,7 @@ const Sidebar = () => {
     function locationHref(pathname) {
         window.location.href = window.appUrl + pathname
     }
+    
     return (
         <Sider width={264}>
             <Menu
@@ -19,6 +20,9 @@ const Sidebar = () => {
                 defaultOpenKeys={['home']}
                 style={{ height: '100%', borderRight: 0 }}
                 theme={'light'}
+                onClick={e => {
+                    window.location = window.appUrl + e.key
+                }}
             >
                 <Menu.Item key="/" onClick={ () => locationHref('/') }>
                     <Icon type="home" />
@@ -30,7 +34,11 @@ const Sidebar = () => {
                     <span className="nav-text">Products</span>
                 </Menu.Item>
 
+<<<<<<< HEAD
                 <Menu.Item key="/logout" onClick={ () => locationHref( '/logout') }>
+=======
+                <Menu.Item key="/auth/logout">
+>>>>>>> ec2c207d64c1ed1e3fd61a91b8be779b45c8218b
                     <Icon type="logout" />
                     <span className="nav-text">Logout</span>
                 </Menu.Item>
