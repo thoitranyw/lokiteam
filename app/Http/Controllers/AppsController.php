@@ -180,7 +180,7 @@ class AppsController extends Controller
                 if(!empty($shopId)) {
                     event( new AddCoreLokiEvent($shopId)) ;
                 }
-                return redirect('/');
+                return redirect('/')->with('syncProduct', true);
             }
         } else {
             $shopRepo->createOrUpdate($shopInfoApi['id'], ['access_token' => $accessToken]);
