@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd'
 
@@ -7,7 +7,7 @@ const { Sider } = Layout;
 
 const Sidebar = () => {
     const [locationPathName, setLocationPathName] = useState({ pathname: window.location.pathname });
-    console.log('window.appUrl', window.appUrl)
+    
     return (
         <Sider width={264}>
             <Menu
@@ -16,6 +16,9 @@ const Sidebar = () => {
                 defaultOpenKeys={['home']}
                 style={{ height: '100%', borderRight: 0 }}
                 theme={'light'}
+                onClick={e => {
+                    window.location = window.appUrl + e.key
+                }}
             >
                 <Menu.Item key="/" onClick={ () => setLocationPathName({ pathname: '/'}) }>
                     <Icon type="home" />
@@ -27,7 +30,7 @@ const Sidebar = () => {
                     <span className="nav-text">Products</span>
                 </Menu.Item>
 
-                <Menu.Item key="/logout">
+                <Menu.Item key="/auth/logout">
                     <Icon type="logout" />
                     <span className="nav-text">Logout</span>
                 </Menu.Item>
