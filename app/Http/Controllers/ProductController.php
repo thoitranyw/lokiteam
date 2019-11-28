@@ -44,7 +44,6 @@ class ProductController extends Controller
 
     public function incrementAddToCart(Request $request, $shopId) {
         $productId = $request->input('product_id');
-        // dd($productId);
         if($product = ProductModel::find($productId)) {
             $product->increment('add_to_cart');
             $product->save();

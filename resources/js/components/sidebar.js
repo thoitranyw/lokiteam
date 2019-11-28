@@ -34,7 +34,7 @@ const Sidebar = () => {
                     <span className="nav-text">Products</span>
                 </Menu.Item>
 
-                <Menu.Item key="/logout" onClick={ () => locationHref( '/auth/logout') }>
+                <Menu.Item key="/auth/logout" onClick={ () => locationHref( '/auth/logout') }>
                     <Icon type="logout" />
                     <span className="nav-text">Logout</span>
                 </Menu.Item>
